@@ -42,6 +42,50 @@ paths:
                 type: string
                 example: Grow up, Mari!
 
+  /api/v1/orders:
+    get:
+      tags:
+        - orders
+      operationId: getOrders
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    _id:
+                      type: string
+                    fullName:
+                      type: string
+                    burger:
+                      type: string
+                    drink:
+                      type: string
+    post:
+      tags:
+        - orders
+      operationId: createOrder
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                fullName:
+                  type: string
+                burger:
+                  type: string
+                drink:
+                  type: string
+      responses:
+        200:
+          description: OK
+
   /api/v1/products/similar/{productId}:
     get:
       operationId: getSimilarProducts

@@ -1,8 +1,7 @@
 import React from "react";
-import "./css/test3.css";
-import example1 from "./images/1.png";
-import example2 from "./images/2.png";
-import example3 from "./images/3.png";
+import example1 from "../images/1.png";
+import example2 from "../images/2.png";
+import example3 from "../images/3.png";
 
 class Test3 extends React.PureComponent{
   render(){
@@ -32,7 +31,7 @@ class Test3 extends React.PureComponent{
         <h3>
           Lahendus:
         </h3>
-        <form >
+        <form style={{width: 300}}>
           <div className={"row"}>
             <label htmlFor="username">Username</label>
             <input name="username" type="text"/>

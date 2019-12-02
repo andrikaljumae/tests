@@ -1,5 +1,5 @@
 import React from "react";
-import test1Example from "./images/test1_example.png";
+import test1Example from "../images/test1_example.png";
 
 // eslint-disable-next-line
 const ITEMS = [

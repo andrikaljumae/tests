@@ -19,7 +19,7 @@
   ],
   "rules": {
     "react/no-unescaped-entities": 0,
-    "semi": ["error", "always"],
-    "quotes": ["error", "double"]
+    "semi": ["error", "always"]
+//    "quotes": ["error", "double"]
   }
 }
