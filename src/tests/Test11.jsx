@@ -3,8 +3,32 @@ import OnlineCount from "../OnlineCount";
 
 class Test11 extends React.PureComponent {
   state = {
-    onlineCount: 20,
+    onlineCount: 0,
   };
+
+  componentDidMount() {
+    this.timer = setInterval(
+      () => this.update(),
+      3000
+    );
+    this.update();
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.timer);
+  }
+
+  update () {
+    fetch("/api/v1/users/onlineCount", {
+      method: "GET"
+    }).then((response) => {
+      return response.text();
+    }).then((onlineCount) => {
+      this.setState({
+        onlineCount: onlineCount
+      });
+    });
+  }
 
   render() {
     return (

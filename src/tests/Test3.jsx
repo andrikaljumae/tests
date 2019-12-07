@@ -4,6 +4,40 @@ import example2 from "../images/2.png";
 import example3 from "../images/3.png";
 
 class Test3 extends React.PureComponent{
+  constructor (props) {
+    super(props);
+    this.state = {
+      responseText: null,
+      username: "",
+      age: ""
+    };
+
+    this.onChange = this.onChange.bind(this);
+    this.onSubmit = this.onSubmit.bind(this);
+  }
+
+  onChange(event) {
+    this.setState({[event.target.name]: event.target.value});
+  }
+
+  onSubmit(event) {
+    event.preventDefault();
+    fetch("/api/v1/register", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        username: this.state.username,
+        age: this.state.age
+      })
+    }).then((response) => {
+      return response.text();
+    }).then((text) => {
+      this.setState({responseText: text});
+    });
+  }
+
   render(){
     return (
       <div>
@@ -31,14 +65,14 @@ class Test3 extends React.PureComponent{
         <h3>
           Lahendus:
         </h3>
-        <form style={{width: 300}}>
+        <form onSubmit={this.onSubmit}>
           <div className={"row"}>
             <label htmlFor="username">Username</label>
-            <input name="username" type="text"/>
+            <input value={this.state.username} onChange={this.onChange} name="username" type="text"/>
           </div>
           <div className={"row"}>
             <label htmlFor="age">Age</label>
-            <input name="age"  type="number"/>
+            <input value={this.state.age} onChange={this.onChange} name="age"  type="number"/>
           </div>
           <div className={"row"} style={{justifyContent: "flex-end"}}>
             <button>Send</button>
@@ -46,10 +80,10 @@ class Test3 extends React.PureComponent{
         </form>
 
         {
-          // this.state.responseText &&
-          // <div className={"response"}>
-          //   {this.state.responseText}
-          // </div>
+          this.state.responseText &&
+          <div className={"response"}>
+            {this.state.responseText}
+          </div>
         }
 
       </div>
@@ -58,4 +92,3 @@ class Test3 extends React.PureComponent{
 }
 
 export default Test3;
-

@@ -130,4 +130,3 @@ Product.propTypes = {
 };
 
 export default Test4;
-
